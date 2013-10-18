@@ -1,0 +1,45 @@
+html {
+	font-size: 14px;
+	font-family: sans-serif;
+}
+
+fieldset {
+	border: 0;
+}
+
+#tabContainer {
+	bottom: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: 10px;
+}
+
+.fixedWidthBox {
+	width: 400px;
+}
+
+.entityAttributes label {
+	width: 160px;
+	margin: 2px;
+	float: left;
+	text-align: right;
+}
+
+.entityAttributes input {
+	margin: 2px;
+	padding: 0;
+	float: left;
+}
+
+.logTextarea {
+	width: 100%;
+	height: 20em;
+	resize: none;
+}
+
+.score-list li {
+	display: inline-block;
+	margin: 8px 0 0 8px;
+	width: 400px;
+}

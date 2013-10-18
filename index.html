@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>FreeSpace Dedicated Server</title>
+	<link href="css/smoothness/jquery-ui-1.9.2.custom.css" rel="stylesheet"/>
+	<link href="css/jquery.dataTables.css" rel="stylesheet"/>
+	<link href="css/jquery.dataTables_themeroller.css" rel="stylesheet"/>
+
+	<link href="css/common.css" rel="stylesheet"/>
+
+	<script src="js/jquery-1.8.3.min.js"></script>
+	<script src="js/jquery-ui-1.9.2.custom.min.js"></script>
+	<script src="js/jquery.dataTables.min.js"></script>
+
+	<script src="js/base64.js"></script>
+
+	<script src="js/common.js"></script>
+	<script src="js/tabLogin.js"></script>
+	<script src="js/tabServer.js"></script>
+	<script src="js/tabMission.js"></script>
+	<script src="js/tabChat.js"></script>
+	<script src="js/tabDebug.js"></script>
+	<script src="js/main.js"></script>
+</head>
+<body>
+	<div id="tabContainer">
+		<ul id="tabHeaders">
+			<li style="float: right;"><a href="#tabLogin">Login</a></li>
+			<li><a href="#tabServer">Server</a></li>
+			<li><a href="#tabMission">Mission</a></li>
+			<li><a href="#tabChat">Chat</a></li>
+			<li><a href="#tabDebug">Debug</a></li>
+		</ul>
+		<div id="tabLogin" class="ui-tabs-panel">
+			<form id="loginForm">
+				<label for="username">Username:</label>
+				<input type="text" name="username" id="loginUsername"/>
+				<br/>
+				<label for="password">Password:</label>
+				<input type="password" name="password" id="loginPassword"/>
+				<br/>
+				<input type="submit" value="Save"/>
+			</form>
+		</div>
+		<div id="tabServer" class="ui-tabs-panel">
+			<form id="serverEntityForm" class="fixedWidthBox">
+				<fieldset class="entityAttributes">
+					<label for="name">Server Name</label>
+					<label for="password">Host Password</label>
+					<label for="framecap">Framecap</label>
+				</fieldset>
+				<fieldset class="entityCommon">
+					<input type="button" name="get" value="Update"/>
+					<input type="button" name="put" value="Save"/>
+					<input type="button" name="delete" value="Shutdown" confirm-data="Shutdown the Server ?"/>
+				</fieldset>
+			</form>
+			<form id="netgameInfoForm" class="fixedWidthBox">
+				<fieldset class="entityAttributes">
+					<label for="name">Server Name</label>
+					<label for="mission">Mission Name</label>
+					<label for="campaign">Campaign Name</label>
+					<label for="maxPlayers">max Players</label>
+					<label for="maxObservers">max Observers</label>
+					<label for="respawn">Respawns</label>
+					<label for="gameState">Game State</label>
+					<label for="security">Security</label>
+				</fieldset>
+				<fieldset class="entityCommon">
+					<input type="button" name="get" value="Update"/>
+					<input type="button" name="put" value="Save"/>
+				</fieldset>
+			</form>
+			<table id='clientsTable'>
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Address</th>
+						<th>Ping</th>
+						<th>Host</th>
+						<th>Observer</th>
+						<th>Callsign</th>
+						<th>Ship Type</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+			</table>
+			<br/>
+			<input type="button" id="refresh" value="Refresh Missions"/>
+			<input type="button" id="reset_all" value="Reset All"/>
+		</div>
+		<div id="tabMission" class="ui-tabs-panel">
+			<form class="fixedWidthBox">
+				<fieldset class="entityAttributes">
+					<label for="fps">Mission Fps:</label>
+					<label for="time">Mission Time:</label>
+				</fieldset>
+				<fieldset class="entityCommon">
+					<input type="button" name="get" value="Update"/>
+				</fieldset>
+			</form>
+			<table id="missionGoalsTable">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Team</th>
+						<th>Status</th>
+						<th>Type</th>
+						<th>Message</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<div id="tabChat" class="ui-tabs-panel">
+			<textarea id="chatLog" class="logTextarea" readonly></textarea>
+			<form id="chatNewMessage">
+				<input type="text" id="chatNewMessageText"/>
+				<input type="submit" value="Send"/>
+			</form>
+		</div>
+		<div id="tabDebug" class="ui-tabs-panel">
+			<textarea id="debugLog" class="logTextarea" readonly></textarea>
+		</div>
+	</div>
+
+	<div id="Templates" style="display:none;">
+		<div id="PlayerPanel" class="ui-tabs-panel">
+			<ul class="score-list">
+				<li template-data="PlayerScoreDetails"/>
+				<li template-data="PlayerScoreDetails"/>
+			</ul>
+		</div>
+
+		<li id="PlayerScoreDetails">
+			<form>
+				<fieldset class="entityAttributes">
+					<label for="score">Score</label>
+					<label for="kills">Kills</label>
+					<label for="kills-friendly">Friendly Kills</label>
+					<label for="assists">Assists</label>
+					<label for="shots-primary">Primary Shots</label>
+					<label for="hits-primary">Primary Hits</label>
+					<label for="hits-friendly-primary">Primary BH Hits</label>
+					<label for="shots-secondary">Secondary Shots</label>
+					<label for="hits-secondary">Secondary Hits</label>
+					<label for="hits-friendly-secondary">Secondary BH Hits</label>
+					<!-- TODO
+					<label for="primary-hit-percentage" dynamic-data="">Primary Hit %</label>
+					<label for="primary-friendly-hit-percentage" dynamic-data="">Primary BH Hit %</label>
+					<label for="secondary-hit-percentage" dynamic-data="">Secondary Hit %</label>
+					<label for="secondary-friendly-hit-percentage" dynamic-data="">Secondary BH Hit %</label>
+					-->
+				</fieldset>
+				<fieldset class="entityCommon">
+					<input type="button" name="get" value="Update"/>
+				</fieldset>
+			</form>
+		</li>
+	</div>
+</body>
+</html>
