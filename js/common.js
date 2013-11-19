@@ -138,7 +138,7 @@ function EntityEditor(auth, selector, url) {
 		var forValue = $(this).attr('for');
 
 		if(!$(this).next().is('input')) {
-			$('<input type="text" name="'+forValue+'""/><br/>').insertAfter(this);
+			$('<input type="text" name="'+forValue+'"/><br/>').insertAfter(this);
 		}
 	});
 
